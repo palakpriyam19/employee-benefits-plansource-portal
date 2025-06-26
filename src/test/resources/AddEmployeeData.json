@@ -1,0 +1,21 @@
+{
+  "firstName": "Chris",
+  "lastName": "John",
+  "email": "chris.john@testmail.com",
+  "password": "Test@1234",
+  "hireDate": "24-06-2025",
+  "eligibleDate": "24-06-2025",
+  "address1": "JFK Street",
+  "city": "California",
+  "state":"California",
+  "zipCode": "99999-9999",
+  "country":"United States",
+  "birthDate": "20-10-1989",
+  "gender": "Female",
+  "maritalStatus": "Married",
+  "employmentLevel": "P",
+  "currentSalary": "$ 50,000.00",
+  "benefitSalary": "$ 5,000.00",
+  "payrollSchedule": "Semi-monthly",
+  "location": "SCA"
+}
