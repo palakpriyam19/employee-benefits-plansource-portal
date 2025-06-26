@@ -15,7 +15,7 @@ import java.time.Duration;
 
 public class BaseClass {
     @FindBy(id = "search-simple-text")
-    private WebElement searchButton;
+    private WebElement seachTextField;
 
     private static String randomSSN = "";
 
@@ -65,9 +65,10 @@ public class BaseClass {
         logger.info("Search created employee... ");
         try {
             logger.info("Waiting for search textfield to load...");
-            waitForElementToLoad(searchButton);
+            waitForElementToLoad(seachTextField);
             logger.info("Sending ssn to be searched in the search textfield...");
-            searchButton.sendKeys(randomSSN + Keys.ENTER);
+            new WebDriverWait(driver, Duration.ofSeconds(20));
+            seachTextField.sendKeys(randomSSN + Keys.ENTER);
             ScreenshotUtil.captureAndReturnPath(driver, "Entered text");
             logger.info("Dismiss unexpected alert if present...");
             dismissUnexpectedAlertIfPresent();
