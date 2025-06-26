@@ -34,30 +34,30 @@ This project is a modular, Java-based automation framework designed to test empl
 ---
 
 ## 🗂️ Project Structure
-screenshots/
-logs/
-src/
-├── main/
-│ ├── java/
-│ │ ├── baseclass / # Base class
-│ │ ├── pageObject/ # Page Object classes (DashboardPage, EmployeePage, etc.)
-│ │ ├── models/ # POJO for Employee and SSNRecord
-│ │ ├── config/ # ConfigManager
-│ │ ├── utils/ # Helpers like ExtentManager, TestDataUtil, ScreenshotUtil
-│ │ └── drivers/ # DriverFactory.java
-│ └── resources/
-│ └── logback.xml # Logging configuration
-├── test/
-│ ├── java/
-│ │ └── baseclass/ # base test class
-│ │ └── tests/ # Test classes (EmployeeCreationTest, etc.)
-│ └── resources/ # json files
-target/
-test-output/ # extent report
-config.properties
-pom.xml
-readme.md
-testng.xml
+screenshots/  
+logs/  
+src/  
+├── main/  
+│ ├── java/  
+│ │ ├── baseclass / # Base class  
+│ │ ├── pageObject/ # Page Object classes (DashboardPage, EmployeePage, etc.)  
+│ │ ├── models/ # POJO for Employee and SSNRecord  
+│ │ ├── config/ # ConfigManager  
+│ │ ├── utils/ # Helpers like ExtentManager, TestDataUtil, ScreenshotUtil  
+│ │ └── drivers/ # DriverFactory.java  
+│ └── resources/  
+│ └── logback.xml # Logging configuration  
+├── test/  
+│ ├── java/  
+│ │ └── baseclass/ # base test class  
+│ │ └── tests/ # Test classes (EmployeeCreationTest, etc.)  
+│ └── resources/ # json files  
+target/  
+test-output/ # extent report  
+config.properties  
+pom.xml  
+README.md  
+testng.xml  
 
 ## How to run the tests?
 ✅ **1. Using IntelliJ (Recommended)**
