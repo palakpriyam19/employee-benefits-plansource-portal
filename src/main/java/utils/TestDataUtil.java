@@ -19,7 +19,7 @@ public class TestDataUtil {
             Gson gson = new Gson();
             return gson.fromJson(reader, Employee.class);
         } catch (IOException e) {
-            throw new RuntimeException("❌ Failed to read employee test data", e);
+            throw new RuntimeException("Failed to read employee test data", e);
         }
     }
 }

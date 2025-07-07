@@ -23,6 +23,8 @@ public class DashboardPage extends BaseClass {
     @FindBy(linkText="Dashboard")
     private WebElement dashboardNavSidebar;
 
+
+
     public DashboardPage(WebDriver driver) {
         super(driver);
         this.driver = driver;

@@ -64,6 +64,10 @@ public class EmployeeCreationTest extends BaseTest {
         logger.info("5. Assert employee is listed");
         Assert.assertTrue(dashboard.isEmployeeListed(emp.getFirstName()), "Employee not found after creation");
         test.pass("Employee listed successfully");
+
+        logger.info("6. Scroll to New Hire Enrollment Link and perform click operation");
+        employeePage.clickOnNewHireEnrollment();
+
     }
 
     @AfterMethod

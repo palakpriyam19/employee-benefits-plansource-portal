@@ -1,6 +1,7 @@
 package pageObject;
 
 import baseclass.BaseClass;
+import dev.failsafe.internal.util.Assert;
 import drivers.DriverFactory;
 import models.Employee;
 import org.openqa.selenium.WebDriver;
@@ -23,6 +24,7 @@ public class EmployeePage extends BaseClass {
     private WebDriver driver;
     private final WebDriverWait wait;
     private final String randomSSN = generateRandomSSN();
+    private final String hireDate = getHireDateMinusTwoDays();
 
     @FindBy(linkText = "Add a New Employee")
     private WebElement addNewEmployeeLink;
@@ -90,6 +92,8 @@ public class EmployeePage extends BaseClass {
     @FindBy(css = "button[type='submit']")
     private WebElement saveButton;
 
+    @FindBy(linkText="New Hire Enrollment")
+    private WebElement newHireEnrollmentLink;
 
     public EmployeePage(WebDriver driver) {
         super(driver);
@@ -162,10 +166,10 @@ public class EmployeePage extends BaseClass {
         new Select(maritalStatusDropdown).selectByVisibleText(emp.getMaritalStatus());
 
         logger.info("Send input from json file to hireDate field");
-        hireDateInput.sendKeys(emp.getHireDate());
+        hireDateInput.sendKeys(hireDate);
 
         logger.info("Send input from json file to eligibleDate field");
-        eligibleDateInput.sendKeys(emp.getEligibleDate());
+        eligibleDateInput.sendKeys(hireDate);
 
         logger.info("Clicking Employment Level dropdown and selecting value from json file");
         new Select(employmentLevelDropdown).selectByVisibleText(emp.getEmploymentLevel());
@@ -190,6 +194,21 @@ public class EmployeePage extends BaseClass {
     }
 
     /**
+     * E2E flow for onboarding a new Employee
+     *
+     */
+    public void createEmployee(Employee emp) throws InterruptedException, AWTException{
+        logger.info("Click on Add New Employee Link...");
+        clickAddNewEmployeeLink();
+        logger.info("Start entering employee details in the New Employee Form...");
+        enterEmployeeDetails(emp);
+        logger.info("Wait for 10 seconds for the page to load...");
+        new WebDriverWait(driver, Duration.ofSeconds(10));
+        logger.info("Required fields filled, initiating click on Save button...");
+        clickSave();
+    }
+
+    /**
      * Clicks the Save button to submit employee creation form
      */
     public void clickSave() {
@@ -203,15 +222,11 @@ public class EmployeePage extends BaseClass {
         ScreenshotUtil.captureAndReturnPath(driver, "06_Employee_created");
     }
 
-    public void createEmployee(Employee emp) throws InterruptedException, AWTException{
-        logger.info("Click on Add New Employee Link...");
-        clickAddNewEmployeeLink();
-        logger.info("Start entering employee details in the New Employee Form...");
-        enterEmployeeDetails(emp);
-        logger.info("Wait for 10 seconds for the page to load...");
-        new WebDriverWait(driver, Duration.ofSeconds(10));
-        logger.info("Required fields filled, initiating click on Save button...");
-        clickSave();
+    public void clickOnNewHireEnrollment() {
+        scrollToElementWithOffset(driver, newHireEnrollmentLink, 150);
+        logger.info("Clicking the New Hire Enrollment Link");
+        if(newHireEnrollmentLink.isDisplayed() && newHireEnrollmentLink.isEnabled())
+            newHireEnrollmentLink.click();
+        ScreenshotUtil.captureAndReturnPath(driver, "07_Benefits");
     }
-
 }

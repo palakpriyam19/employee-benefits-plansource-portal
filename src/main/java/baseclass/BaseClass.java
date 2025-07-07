@@ -1,5 +1,6 @@
 package baseclass;
 
+import dev.failsafe.internal.util.Assert;
 import drivers.DriverFactory;
 import models.Employee;
 import org.openqa.selenium.*;
@@ -11,13 +12,19 @@ import org.slf4j.LoggerFactory;
 import utils.ScreenshotUtil;
 import utils.TestDataUtil;
 
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 
 public class BaseClass {
     @FindBy(id = "search-simple-text")
     private WebElement seachTextField;
 
     private static String randomSSN = "";
+    private static String hireDate = "";
 
     @FindBy(xpath="//a/div/span")
     private WebElement newEmployeeName;
@@ -43,6 +50,11 @@ public class BaseClass {
         randomSSN = String.format("%03d-%02d-%04d", area, group, serial);
         return randomSSN;
     }
+
+    public static void getStartDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-YYYY");
+    }
+
 
     /**
      * Scroll to Element with offset.
@@ -126,6 +138,16 @@ public class BaseClass {
         } catch (TimeoutException ignored) {
             // no alert, safe to proceed
         }
+    }
+
+    /**
+     * Get hireDate (currentDate -2 )
+     *
+     */
+    public static String getHireDateMinusTwoDays() {
+        LocalDate getHireDate = LocalDate.now().minusDays(2);  // today - 2 days
+        hireDate = getHireDate.format(DateTimeFormatter.ofPattern("MM-dd-yyyy"));
+        return hireDate;
     }
 
 }
